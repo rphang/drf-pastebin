@@ -4,9 +4,22 @@ from django.views.decorators.csrf import csrf_protect
 
 from .models import Paste
 
+@csrf_protect
 def index(request):
+    error = None
+    if request.method == "POST":
+        try:
+            paste = Paste.objects.create(
+                title=request.POST.get("title"),
+                content=request.POST.get("paste"),
+                password=request.POST.get("password"),
+                syntax="raw",
+                )
+        except Exception as e:
+            error = e
+
     pastes = Paste.objects.all()
-    return render(request, "index.html", {"pastes": pastes})
+    return render(request, "index.html", {"pastes": pastes, "error": error})
 
 @csrf_protect
 def paste(request, slug):
