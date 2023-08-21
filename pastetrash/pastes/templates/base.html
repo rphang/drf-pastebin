@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+<head>
+    <title>Pastetrash</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="menu">
+                <ul>
+                    <li><a href="/">Pastetrash</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="footer">
+            <p>&copy; 2023 - DRF / Django demo</p>
+        </div>
+    </div>

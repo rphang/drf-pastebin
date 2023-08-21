@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content">
+    <div class="paste">
+        <form action="{% url 'index' %}" method="post">
+            {% csrf_token %}
+            <label for="title">Title</label>
+            <input type="text" name="title" placeholder="Title">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Password">
+            <textarea name="paste" placeholder="Paste your text here"></textarea>
+            <input type="submit" value="Paste">
+        </form>
+    </div>
+</div>
+<div class="list">
+    <h2>Recent Pastes</h2>
+    <ul>
+        {% for paste in pastes %}
+            <li><a href="/{{ paste.slug }}">{{ paste.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

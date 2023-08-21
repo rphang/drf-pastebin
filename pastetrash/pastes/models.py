@@ -17,6 +17,9 @@ class Paste(models.Model):
     
     def check_password(self, password):
         return check_password(password, self.password)
+    
+    def is_protected(self):
+        return self.password is not None
 
     def save(self, *args, **kwargs):
         # Empty values
